@@ -31,34 +31,40 @@ public class Main extends Application {
 			/* Setting Scene1 The Launch Page of Game 
 			 * */
 			
-			Text text = new Text("Welcome to this Word Search"); //creating text
-			text.setId("fancytext");                             //setting Id for text
-			text.setText("Welcome to This word Search");
-			Text LabelDifficulty = new Text("Select Difficulty:");   //creating another text 
-			LabelDifficulty.setId("labeltext");                     //setting ID for text 
-			LabelDifficulty.setText("Select Difficulty:");
-			Button buttonEasy = new Button("Easy");               //creating buttons for 3 different levels in Game
+		    //create Vbox for welcomeing text
+			Text welcome = new Text("Welcome to this Word Search");
+			welcome.setId("fancytext");                            
+			welcome.setText("Welcome to This word Search");
+			Text select = new Text("Select Difficulty:");  
+			select.setId("labeltext");                     
+			select.setText("Select Difficulty:");
+			
+		    VBox labelWelcome = new VBox();
+		    labelWelcome.setAlignment(Pos.TOP_LEFT);
+		    labelWelcome.getChildren().addAll(welcome,select);
+		    
+		    //create Hbox for button to select game difficulty 
+	        Button buttonEasy = new Button("Easy");               
 		    Button buttonMedium = new Button("Medium");
 		    Button buttonHard = new Button("Hard");
-			
+		    
 		    HBox btnForDifficulty=new HBox();
 	        btnForDifficulty.setAlignment(Pos.TOP_LEFT);
 	        btnForDifficulty.getChildren().addAll(buttonEasy, buttonMedium, buttonHard);   // Adds Buttons 
 	        btnForDifficulty.setSpacing(30);
 	        
-	        VBox rootForDifficulty = new VBox(VBOX_SPACING);
-	        rootForDifficulty.setBackground(new Background(
+	        VBox rootWelcome = new VBox(VBOX_SPACING);
+	        rootWelcome.setBackground(new Background(
 	                new BackgroundImage(
 	                        new Image("/backgroundImage/bg_img1.jpeg"),
 	                        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 	                        new BackgroundPosition(Side.LEFT, 0, true, Side.BOTTOM, 0, true),
 	                        new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, false, true)
 	                )));
-	        rootForDifficulty.setAlignment(Pos.TOP_LEFT);
-	        rootForDifficulty.getChildren().addAll(text, LabelDifficulty, btnForDifficulty);
-	        scene1 = new Scene(rootForDifficulty, windowSize, windowSize); // Sets the window size and content to
-	                                                                                // show
-
+	        
+	        rootWelcome.setAlignment(Pos.TOP_LEFT);
+	        rootWelcome.getChildren().addAll(labelWelcome, btnForDifficulty);
+	        scene1 = new Scene(rootWelcome, windowSize, windowSize);
 
 			scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene1);
