@@ -54,6 +54,14 @@ public class Base {
         fillGameBoard(); // Randomizes unfilled positions to a random Char
         // printGameBoard();
     }
+    /**
+     * Initializes the gameBoard
+     * 
+     * @param size Sets the 2d array size as sizeXsize (e.g a 15x15 grid)
+     */
+    public void startGameBoard(int size) {
+        gameBoard = new char[size][size];
+    }
 
     /**
      * Returns the character at a given position in the gameBoard
