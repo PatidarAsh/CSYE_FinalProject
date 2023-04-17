@@ -127,4 +127,36 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+
+	/**
+     * This prints the contents of the gameBoard char array to the console, to be
+     * used for debugging purposes only.
+     * 
+     * <p>
+     * To run, uncomment the "printGameBoard()" line in initGameBoard()
+     * <p>
+     */
+    public void printGameBoard() {
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                System.out.print(game.getBoardPos(i, j) + "  ");
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * This prints the gameBoard char array to the canvas, and is used to
+     * graphically show the game board to the user
+     */
+    public void gcPrintGameBoard() {
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                gc.fillText(String.valueOf(game.getBoardPos(i, j)), (25 + (20 * j)), (100 + (20 * i)));
+            }
+        }
+    }
+
+
 }
