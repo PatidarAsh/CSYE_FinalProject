@@ -112,11 +112,14 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        Button buttonBack = new Button("Back");
 	        buttonBack.setStyle("-fx-padding:0 ; -fx-pref-height: 5; -fx-pref-width: 50;"
 	        		+ "   -fx-text-fill: #fef9f3; -fx-background-color: #b8acac;");
+	        buttonBack.setFocusTraversable(false);
+
 	        
 	        Group rootForMain = new Group();
 	        rootForMain.setLayoutX(110);
 	        rootForMain.setLayoutY(110);
-	        rootForMain.getChildren().addAll(canvas, keyboardNode, buttonBack); // Adds canvas for printing to and the keyboard listener
+	        rootForMain.getChildren().addAll(canvas, keyboardNode); // Adds canvas for printing to and the keyboard listener
+	        rootForMain.getChildren().add(buttonBack);
 	        mainScene = new Scene(rootForMain, windowSize, windowSize); // Sets the window size and content to show
 	        mainScene.setFill(Color.web("#F6E1BE"));
 	        
