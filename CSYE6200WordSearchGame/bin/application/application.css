@@ -1,18 +1,18 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 #fancytext {
-    -fx-font: 100px Papyrus;
-    -fx-fill: Blue;
-    -fx-stroke: black;
+    -fx-font:100px 'Apple Chancery', sans-serif;                            
+    -fx-fill: #418aa5;
+    -fx-stroke: #418aa5;
     -fx-stroke-width: 1;
      -fx-font-size: 32pt;
 }
 
 
 #labeltext{
-	 -fx-font: 100px Verdana;
-    -fx-fill: Blue;
-    -fx-stroke: black;
+	 -fx-font: 100px 'Bradley Hand';
+    -fx-fill: #2596be;
+    -fx-stroke: #2596be;
     -fx-stroke-width: 1;
      -fx-font-size: 18pt;
 }

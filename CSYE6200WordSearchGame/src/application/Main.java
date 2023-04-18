@@ -63,7 +63,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 			select.setText("Select Difficulty:");
 			
 		    VBox labelWelcome = new VBox();
-		    labelWelcome.setAlignment(Pos.TOP_LEFT);
+		    labelWelcome.setAlignment(Pos.CENTER);
 		    labelWelcome.getChildren().addAll(welcome,select);
 		    
 		    //create Hbox for button to select game difficulty 
@@ -72,21 +72,21 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 		    Button buttonHard = new Button("Hard");
 		    
 		    HBox btnForDifficulty=new HBox();
-	        btnForDifficulty.setAlignment(Pos.TOP_LEFT);
-	        btnForDifficulty.getChildren().addAll(buttonEasy, buttonMedium, buttonHard /*,GetTurorialHBOX.getTHbox()*/);   // Adds Buttons 
+	        btnForDifficulty.setAlignment(Pos.CENTER);
+	        btnForDifficulty.getChildren().addAll(buttonEasy, buttonMedium, buttonHard);   // Adds Buttons 
 	        btnForDifficulty.setSpacing(30);
 	        
 	        VBox rootWelcome = new VBox(VBOX_SPACING);
 	        rootWelcome.setBackground(new Background(
 	                new BackgroundImage(
-	                        new Image("/backgroundImage/bg_img1.jpeg"),
+	                        new Image("/backgroundImage/bg_img2.jpg"),
 	                        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 	                        new BackgroundPosition(Side.LEFT, 0, true, Side.BOTTOM, 0, true),
 	                        new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, false, true)
 	                )));
 	        
-	        rootWelcome.setAlignment(Pos.TOP_LEFT);
-	        rootWelcome.getChildren().addAll(labelWelcome, btnForDifficulty);
+	        rootWelcome.setAlignment(Pos.CENTER);
+	        rootWelcome.getChildren().addAll(labelWelcome, btnForDifficulty, GetTurorialHBOX.getTHbox());
 	        scene1 = new Scene(rootWelcome, windowSize, windowSize);
 	        
 	        //set frontend
@@ -135,7 +135,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        
 	        rootClosing.setBackground(new Background(
 	                new BackgroundImage(
-	                        new Image("/backgroundImage/bg_img1.jpeg"),
+	                        new Image("/backgroundImage/bg_img2.jpg"),
 	                        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 	                        new BackgroundPosition(Side.LEFT, 0, true, Side.BOTTOM, 0, true),
 	                        new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, false, true)

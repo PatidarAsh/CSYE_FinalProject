@@ -24,7 +24,7 @@ public class GetTurorialHBOX {
 		HBox tb = new HBox();
 		tb.setPadding(new Insets(5,10,5,10));
 		tb.setSpacing(5);
-		ImageView image = new ImageView(new Image("/tutorialimage/tutorial.png"));
+		ImageView image = new ImageView(new Image("/backgroundImage/how_to_play.png"));
 		image.setPreserveRatio(true);
 		image.setFitHeight(100);
 
