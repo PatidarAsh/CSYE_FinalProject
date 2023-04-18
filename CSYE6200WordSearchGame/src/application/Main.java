@@ -105,39 +105,22 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        gc = canvas.getGraphicsContext2D();
 
 	        VBox keyboardNode = new VBox();
-//	        keyboardNode.setAlignment(Pos.CENTER);
 	        keyboardNode.setFocusTraversable(true);
 	        keyboardNode.requestFocus();
 	        keyboardNode.setOnKeyPressed(this);
-//	        keyboardNode.setSpacing(300);
 	      
 	        Button buttonBack = new Button("Back");
 	        buttonBack.setStyle("-fx-padding:0 ; -fx-pref-height: 5; -fx-pref-width: 50;"
 	        		+ "   -fx-text-fill: #fef9f3; -fx-background-color: #b8acac;");
 	        
-//	        VBox rootForM = new VBox(VBOX_SPACING);
-////	        rootForM.setAlignment(Pos.CENTER);
-//	        rootForM.setLayoutX(100);
-//	        rootForM.setLayoutY(100);
-//	        rootForM.getChildren().addAll(canvas, keyboardNode);
-//	        rootForM.getChildren().add(buttonBack); 
-//	        rootForM.setSpacing(30);
-//	        rootForM.setStyle("-fx-background-color: #F6E1BE;");
-//	        mainScene = new Scene(rootForM, windowSize, windowSize); // Sets the window size and content to show
-//	        mainScene.setFill(Color.web("#F6E1BE"));
-	        
 	        Group rootForMain = new Group();
 	        rootForMain.setLayoutX(110);
 	        rootForMain.setLayoutY(110);
 	        rootForMain.getChildren().addAll(canvas, keyboardNode, buttonBack); // Adds canvas for printing to and the keyboard listener
-//	        rootForMain.getChildren()..add(3, buttonBack); 
 	        mainScene = new Scene(rootForMain, windowSize, windowSize); // Sets the window size and content to show
 	        mainScene.setFill(Color.web("#F6E1BE"));
-
-			/* Setting Scene2 for ending of game 
-			 * */
 	        
-	        //
+	        //Scene2 for closing
 			Text closing = new Text("Good Job!");
 			closing.setId("fancytext");                            
 			closing.setText("             Good Job!\n You found all of the words");
