@@ -222,7 +222,48 @@ public class Base {
         }
     }
 
-//letter, word selected
+    public void clearWordSelect() {
+        wordSelect.clearArrayList();
+    }
+    
+    //Convert wordSelect ArrayList to a string 
+    public void wordSelectedToString() {
+        input = "";
+        for (int i = 0; i < getWordSelectSize(); i++) {
+        	input = input.concat(String.valueOf(getWordSelectValue(i)));
+        }
+    }
+
+    
+    public void deleteLastLetter() {
+        if (wordSelect.getSize() > 0) {
+            wordSelect.removeLastValue();
+        }
+    }
+
+    
+    public void addLetter(char val) {
+        wordSelect.addLetter(val);
+    }
+
+    
+    public int getWordSelectSize() {
+        return wordSelect.getSize();
+    }
+
+    
+    public char getWordSelectValue(int pos) {
+        return wordSelect.getValue(pos);
+    }
+
+
+    public int getMatrixSize() {
+        return matrixSize;
+    }
+
+    public String getWordInput() {
+        return input;
+    }
     
     //add letter to the list and check if it matches
     public void checkCurrentSelect(int rowSelection, int colSelection) {

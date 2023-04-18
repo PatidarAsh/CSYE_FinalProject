@@ -2,6 +2,7 @@ package application;
 	
 
 import application.Main.Difficulty;
+import application.tutorial.GetTurorialHBOX;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -72,7 +73,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 		    
 		    HBox btnForDifficulty=new HBox();
 	        btnForDifficulty.setAlignment(Pos.TOP_LEFT);
-	        btnForDifficulty.getChildren().addAll(buttonEasy, buttonMedium, buttonHard);   // Adds Buttons 
+	        btnForDifficulty.getChildren().addAll(buttonEasy, buttonMedium, buttonHard /*,GetTurorialHBOX.getTHbox()*/);   // Adds Buttons 
 	        btnForDifficulty.setSpacing(30);
 	        
 	        VBox rootWelcome = new VBox(VBOX_SPACING);
@@ -144,6 +145,11 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        rootClosing.getChildren().addAll(labelClosing, btnForRetry);
 	        scene2 = new Scene(rootClosing, windowSize, windowSize);
 
+	      //set frontend
+	        scene2.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setScene(scene2);
+			primaryStage.show();
+			
 	        AnimationTimer mainGame = new AnimationTimer() {
 	            @Override
 	            public void handle(long arg0) {
