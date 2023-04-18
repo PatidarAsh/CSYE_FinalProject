@@ -161,7 +161,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 			buttonEasy.setOnAction(e -> { 
 	            difficulty = Difficulty.EASY; 
 	            game.initmatrix(difficulty);
-	            boardSize = game.getBoardSize();
+	            boardSize = game.getMatrixSize();
 	            primaryStage.setScene(mainScene); 
 	            mainGame.start(); 
 	        });
@@ -201,7 +201,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     public void printGameBoard() {
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                System.out.print(game.getBoardPos(i, j) + "  ");
+                System.out.print(game.getCharPos(i, j) + "  ");
             }
             System.out.println();
         }
@@ -214,7 +214,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     public void gcPrintGameBoard() {
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                gc.fillText(String.valueOf(game.getBoardPos(i, j)), (25 + (20 * j)), (100 + (20 * i)));
+                gc.fillText(String.valueOf(game.getCharPos(i, j)), (25 + (20 * j)), (100 + (20 * i)));
             }
         }
     }
@@ -239,7 +239,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         gc.setFill(Color.BLACK);
         gc.fillRect((22 + (20 * colSelection)), (88 + (20 * rowSelection)), 15, 15);
         gc.setFill(Color.WHITE);
-        gc.fillText(String.valueOf(game.getBoardPos(rowSelection, colSelection)), (25 + (20 * colSelection)),
+        gc.fillText(String.valueOf(game.getCharPos(rowSelection, colSelection)), (25 + (20 * colSelection)),
                 (100 + (20 * rowSelection)));
         gc.restore(); 
     }
@@ -281,11 +281,11 @@ public class Main extends Application implements EventHandler<KeyEvent>{
             }
         }
         if (e.getCode() == KeyCode.ENTER) { 
-            game.selectFoundWord(rowSelection, colSelection);
+            game.checkCurrentSelect(rowSelection, colSelection);
         }
         if (e.getCode() == KeyCode.DELETE || e.getCode() == KeyCode.BACK_SPACE) { // If delete or backspace is pressed
             game.deleteLastLetter();
-            game.wordSelectToString();
+            game.wordSelectedToString();
         }
     }
     

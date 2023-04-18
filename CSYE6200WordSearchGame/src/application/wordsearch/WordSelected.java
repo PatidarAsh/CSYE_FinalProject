@@ -7,7 +7,7 @@ public class WordSelected {
 	private ArrayList<Character> wordSelect = new ArrayList<Character>();
     
 	
-    public void addWord(char val) {
+    public void addLetter(char val) {
         wordSelect.add(val);
     }
     

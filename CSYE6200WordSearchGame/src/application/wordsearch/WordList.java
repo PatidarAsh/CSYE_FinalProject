@@ -30,7 +30,7 @@ public class WordList {
     }
 
 
-    public void removeWordListValue(int pos) {
+    public void deleteWordListVal(int pos) {
         wordList.remove(pos);
     }
 }

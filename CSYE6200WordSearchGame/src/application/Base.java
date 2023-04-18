@@ -3,13 +3,14 @@ package application;
 import java.util.Random;
 
 import application.wordsearch.WordList;
+import application.wordsearch.WordSelected;
 
 
 public class Base {
 
 
     private WordList wordList = new WordList(); // Hold the list of words that the user still needs to find
-//    private WordSelected wordSelect = new WordSelected(); // Holds a list of selected characters
+    private WordSelected wordSelect = new WordSelected(); // Holds a list of selected characters
     private char[][] matrix; // Becomes the matrix, and is initialized with a size from WordSearch.java
     private int matrixSize; // Holds the size of the board
     private String input = new String(); // Stores the word that the user selects
@@ -17,8 +18,8 @@ public class Base {
     private int oldCol = -1; // Set to the column of the first letter of wordSelect
     private final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Conatins all possible random letters
     
-    private final int sizeEazy = 15, sizeMedium = 20, sizeHard = 25;
-    private final int wordEazy = 4, wordMedium = 8, wordHard = 12;
+    private final int sizeEazy = 10, sizeMedium = 20, sizeHard = 25;
+    private final int wordEazy = 1, wordMedium = 8, wordHard = 12;
 
     final static String[] wordLibrary = { "HAPPY", "MOTIVATED", "CONFIDENT", "POSITIVE", "ENERGETIC", 
     		"PERSISTENT", "DISCIPLINED", "PROACTIVE", "GRACIOUS", "HONEST", "RELIABLE", "RESPECTFUL", 
@@ -27,40 +28,34 @@ public class Base {
     		"GENUINE", "HUMBLE", "EMPOWERED"}; // Library of words that are possible to be hidden
     
     
-    /**
-     * Starts the game board with the size depending on difficulty selected.
-     * 
-     * @param difficulty Difficulty setting chosen by user, used to set matrix
-     *                   and wordList size
-     */
+    //Start the game  with the size depending on difficulty selected.
+
     public void initmatrix(Main.Difficulty difficulty) {
         switch (difficulty) {
         case EASY:
             matrixSize = sizeEazy;
             generateWords(wordEazy); // Sets wordList to 4 random words
-            startmatrix(matrixSize); // Starts matrix with size of 15x15
+            startMatrix(matrixSize); // Starts matrix with size of 15x15
             break;
         case MEDIUM:
             matrixSize = sizeMedium;
             generateWords(wordMedium); // Sets wordList to 8 random words
-            startmatrix(matrixSize); // Starts matrix with size of 20x20
+            startMatrix(matrixSize); // Starts matrix with size of 20x20
             break;
         case HARD:
             matrixSize = sizeHard;
             generateWords(wordHard); // Sets wordList to 12 random words
-            startmatrix(matrixSize); // Starts matrix with size of 25x25
+            startMatrix(matrixSize); // Starts matrix with size of 25x25
             break;
         }
-        populatematrix(); // Places the words on the board
+        generateMatrix(); // Places the words on the board
         fillBlanks(); // Randomizes unfilled positions to a random Char
         // printmatrix();
     }
-    /**
-     * Initializes the matrix
-     * 
-     * @param size Sets the 2d array size as sizeXsize (e.g a 15x15 grid)
-     */
-    public void startmatrix(int size) {
+    
+    
+    //Initializes the matrix 
+    public void startMatrix(int size) {
         matrix = new char[size][size];
     }
     
@@ -69,7 +64,7 @@ public class Base {
      * Places the words in wordList in the board. Runs checks so that all positions
      * are valid and not overwriting another word
      */
-    public void populatematrix() {
+    public void generateMatrix() {
         Random rand = new Random(); // Random value generator
         int modifier; // Changes the location that is currently being written to
         int orientation, randCol, randRow; // These store the values of the orientaion, the column of the first letter,
@@ -108,10 +103,7 @@ public class Base {
         }
     }
 
-    /**
-     * Returns the character at a given position in the matrix
-     */
-    public char getBoardPos(int row, int col) {
+    public char getCharPos(int row, int col) {
         return matrix[row][col];
     }
     
@@ -129,6 +121,7 @@ public class Base {
         }
     }
     
+    //prevent the word was positioned out of the matrix array
     public boolean preventOutOfBound(char[][] matrix, int orientation, int row, int col, int length) {
         boolean inbounds = false;
 
@@ -157,7 +150,7 @@ public class Base {
         return inbounds;
     }
 
-    
+    //prevent word positioning in the already-written words
     public boolean preventOverlap(char[][] matrix, int orientation, int row, int col, int length) {
         boolean checker = true;
         int modifier;
@@ -190,8 +183,10 @@ public class Base {
         return checker;
     }
     
+    
+    //generate random letters for left cells
     public void fillBlanks() {
-        Random randChar = new Random(); // Random value generator
+        Random randChar = new Random(); 
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
                 if (matrix[i][j] == 0) {
@@ -201,8 +196,28 @@ public class Base {
         }
     }
     
-    public String getInput() {
-        return input;
+//strings
+
+//letter, word selected
+    
+    //add letter to the list and check if it matches
+    public void checkCurrentSelect(int rowSelection, int colSelection) {
+        addLetter(getCharPos(rowSelection, colSelection));
+        checkForFinishedWord(rowSelection, colSelection);
+    }
+    
+    //convert the wordSelect ArrayList into string, checks if input matches
+    //reset after match words
+    public void checkForFinishedWord(int rowSelection, int colSelection) {
+        checkSamePos(rowSelection, colSelection);
+        wordSelectedToString();
+        for (int i = 0; i < getWordListSize(); i++) {
+            if (input.equals(getWordListValue(i))) {
+                deleteWordListVal(i);
+                clearWordSelect();
+                input = "";
+            }
+        }
     }
 
 }
