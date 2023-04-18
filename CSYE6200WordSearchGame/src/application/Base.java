@@ -196,7 +196,31 @@ public class Base {
         }
     }
     
-//strings
+    public String getInput() {
+        return input;
+    }
+    
+    public int getWordListSize() {
+        return wordList.getSize();
+    }
+    
+    public void deleteWordListVal(int pos) {
+        wordList.deleteWordListVal(pos);
+    }
+
+    //get letter at certain position
+    public String getWordListValue(int pos) {
+        return wordList.getValue(pos);
+    }
+    
+    public void checkSamePos(int rowSelection, int colSelection) {
+        if (input.length() == 0) {
+            oldCol = colSelection;
+            oldRow = rowSelection;
+        } else if (!(oldRow == rowSelection || oldCol == colSelection)) {
+            clearWordSelect();
+        }
+    }
 
 //letter, word selected
     
