@@ -30,7 +30,26 @@ public class GetTurorialHBOX {
 
 		
 		
+		Button tbutton = new Button();
+		tbutton.setGraphic(image);
+		tbutton.setBackground(null);
+		tbutton.setPrefSize(Region.USE_COMPUTED_SIZE, 100);
+		tbutton.setContentDisplay(ContentDisplay.CENTER);
+
 		
+		
+		EventHandler<ActionEvent> callStage = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				GetTutorialStage.getTutorialStage();
+				
+			}
+			
+		};
+		tbutton.setOnAction(callStage);
+		tb.setAlignment(Pos.CENTER);
+		tb.getChildren().addAll(tbutton);
 		
 		
 		return tb;
