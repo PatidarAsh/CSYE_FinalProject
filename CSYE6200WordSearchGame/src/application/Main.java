@@ -1,6 +1,7 @@
 package application;
 	
 
+import application.Main.Difficulty;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -140,15 +141,26 @@ public class Main extends Application {
 	        rootClosing.getChildren().addAll(labelClosing, btnForRetry);
 	        scene2 = new Scene(rootClosing, windowSize, windowSize);
 
+	        AnimationTimer mainGame = new AnimationTimer() {
+	            @Override
+	            public void handle(long arg0) {
+	                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight()); 
+	                
+	                getEverything();
+	                input = game.getInput();
+	                checkForEnd(primaryStage);
+	            }
+	        };
 
-	        primaryStage.setScene(scene1); // Sets the inital stage to be shown
-	        primaryStage.show(); // Shows the stage
+	        primaryStage.setScene(scene1); 
+	        primaryStage.show(); 
 			
-			buttonEasy.setOnAction(e -> { // When Easy selected
-	            difficulty = Difficulty.EASY; // Sets difficulty level
-	            primaryStage.setScene(mainScene); // Sets the stage to show main game scene
-
-
+			buttonEasy.setOnAction(e -> { 
+	            difficulty = Difficulty.EASY; 
+	            game.initmatrix(difficulty);
+	            boardSize = game.getBoardSize();
+	            primaryStage.setScene(mainScene); 
+	            mainGame.start(); 
 	        });
 
 			buttonMedium.setOnAction(e -> { // When Medium selected
@@ -201,6 +213,50 @@ public class Main extends Application {
             for (int j = 0; j < boardSize; j++) {
                 gc.fillText(String.valueOf(game.getBoardPos(i, j)), (25 + (20 * j)), (100 + (20 * i)));
             }
+        }
+    }
+    
+    public void printWordList() {
+        int rowCounter = 0;
+        int colCounter = 0;
+        int indent = 15;
+        for (int i = 0; i < game.getWordListSize(); i++) {
+            gc.fillText(game.getWordListValue(i), (indent + (125 * colCounter)), (indent + (20 * rowCounter)));
+            colCounter++;
+            if (colCounter == 4) {
+                colCounter = 0;
+                rowCounter++;
+            }
+        }
+    }
+    
+    //reverse b/w color to show current select letter 
+    public void reverseColor() {
+        gc.save(); 
+        gc.setFill(Color.BLACK);
+        gc.fillRect((22 + (20 * colSelection)), (88 + (20 * rowSelection)), 15, 15);
+        gc.setFill(Color.WHITE);
+        gc.fillText(String.valueOf(game.getBoardPos(rowSelection, colSelection)), (25 + (20 * colSelection)),
+                (100 + (20 * rowSelection)));
+        gc.restore(); 
+    }
+    
+    //display current selected letters
+    public void printSelectedWord() {
+        gc.fillText("Word Selected: " + input, 15, 75);
+    }
+    
+    //method for animation timer, contains everything in the game scene
+    public void getEverything() {
+        gcPrintGameBoard();
+        printWordList();
+        reverseColor();
+        printSelectedWord();
+    }
+    
+    public void checkForEnd(Stage gameStage) {
+        if (game.getWordListSize() == 0) {
+            gameStage.setScene(scene2);
         }
     }
 }
