@@ -4,6 +4,7 @@ package application;
 import application.Main.Difficulty;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.stage.Stage;
@@ -13,6 +14,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -26,7 +29,7 @@ import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
 
 
-public class Main extends Application {
+public class Main extends Application implements EventHandler<KeyEvent>{
 	enum Difficulty {
         EASY, MEDIUM, HARD
     }
@@ -96,7 +99,7 @@ public class Main extends Application {
 	        Box keyboardNode = new Box();
 	        keyboardNode.setFocusTraversable(true);
 	        keyboardNode.requestFocus();
-//	        keyboardNode.setOnKeyPressed(this);
+	        keyboardNode.setOnKeyPressed(this);
 	      
 	        Group rootForMain = new Group();
 	        rootForMain.getChildren().addAll(canvas, keyboardNode); // Adds canvas for printing to and the keyboard listener
@@ -252,6 +255,38 @@ public class Main extends Application {
         printWordList();
         reverseColor();
         printSelectedWord();
+    }
+    
+    //handle selecting letter
+    public void handle(KeyEvent e) {
+
+        if (e.getCode() == KeyCode.LEFT) { 
+            if (colSelection - 1 >= 0) { 
+                colSelection--; 
+            }
+        }
+        if (e.getCode() == KeyCode.RIGHT) { 
+            if (colSelection + 1 < boardSize) { 
+                colSelection++; 
+            }
+        }
+        if (e.getCode() == KeyCode.UP) { 
+            if (rowSelection - 1 >= 0) { 
+                rowSelection--;
+            }
+        }
+        if (e.getCode() == KeyCode.DOWN) { 
+            if (rowSelection + 1 < boardSize) { 
+                rowSelection++; 
+            }
+        }
+        if (e.getCode() == KeyCode.ENTER) { 
+            game.selectFoundWord(rowSelection, colSelection);
+        }
+        if (e.getCode() == KeyCode.DELETE || e.getCode() == KeyCode.BACK_SPACE) { // If delete or backspace is pressed
+            game.deleteLastLetter();
+            game.wordSelectToString();
+        }
     }
     
     public void checkForEnd(Stage gameStage) {
