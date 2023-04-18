@@ -68,9 +68,13 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 		    labelWelcome.getChildren().addAll(welcome,select);
 		    
 		    //create Hbox for button to select game difficulty 
-	        Button buttonEasy = new Button("Easy");               
+	        Button buttonEasy = new Button("Easy");  
+	        buttonEasy.setId("button");
 		    Button buttonMedium = new Button("Medium");
+		    buttonMedium.setId("button");
 		    Button buttonHard = new Button("Hard");
+		    buttonHard.setId("button");
+
 		    
 		    HBox btnForDifficulty=new HBox();
 	        btnForDifficulty.setAlignment(Pos.CENTER);
@@ -107,10 +111,26 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        keyboardNode.setOnKeyPressed(this);
 //	        keyboardNode.setSpacing(300);
 	      
+	        Button buttonBack = new Button("Back");
+	        buttonBack.setStyle("-fx-padding:0 ; -fx-pref-height: 5; -fx-pref-width: 50;"
+	        		+ "   -fx-text-fill: #fef9f3; -fx-background-color: #b8acac;");
+	        
+//	        VBox rootForM = new VBox(VBOX_SPACING);
+////	        rootForM.setAlignment(Pos.CENTER);
+//	        rootForM.setLayoutX(100);
+//	        rootForM.setLayoutY(100);
+//	        rootForM.getChildren().addAll(canvas, keyboardNode);
+//	        rootForM.getChildren().add(buttonBack); 
+//	        rootForM.setSpacing(30);
+//	        rootForM.setStyle("-fx-background-color: #F6E1BE;");
+//	        mainScene = new Scene(rootForM, windowSize, windowSize); // Sets the window size and content to show
+//	        mainScene.setFill(Color.web("#F6E1BE"));
+	        
 	        Group rootForMain = new Group();
-	        rootForMain.setLayoutX(100);
-	        rootForMain.setLayoutY(100);
-	        rootForMain.getChildren().addAll(canvas, keyboardNode); // Adds canvas for printing to and the keyboard listener
+	        rootForMain.setLayoutX(110);
+	        rootForMain.setLayoutY(110);
+	        rootForMain.getChildren().addAll(canvas, keyboardNode, buttonBack); // Adds canvas for printing to and the keyboard listener
+//	        rootForMain.getChildren()..add(3, buttonBack); 
 	        mainScene = new Scene(rootForMain, windowSize, windowSize); // Sets the window size and content to show
 	        mainScene.setFill(Color.web("#F6E1BE"));
 
@@ -130,8 +150,11 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 		    labelClosing.getChildren().addAll(closing,retry);
 		    
 		    //create Hbox for button to select game difficulty 
-	        Button buttonYes = new Button("Yea");               
+	        Button buttonYes = new Button("Yea");
+	        buttonYes.setId("button");
 		    Button buttonNo = new Button("I'm done");
+		    buttonNo.setId("button");
+
 		    
 		    HBox btnForRetry=new HBox();
 		    btnForRetry.setAlignment(Pos.CENTER);
@@ -160,7 +183,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        AnimationTimer mainGame = new AnimationTimer() {
 	            @Override
 	            public void handle(long arg0) {
-	                gc.clearRect(0, 0, canvas.getWidth()/2, canvas.getHeight()/2); 
+	                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight()); 
 	                
 	                gc.setTextAlign(null);;
 	                
@@ -208,6 +231,11 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        });
 
 	        buttonNo.setOnAction(e -> Platform.exit()); // If user doesnt want to play again, quit
+	        
+	        buttonBack.setOnAction(e -> { 
+//	            mainGame.stop(); 
+	            primaryStage.setScene(scene1); 
+	        });
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -250,7 +278,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     }
     
     public void printWordList() {
-        int rowCounter = 0;
+        int rowCounter = 1;
         int colCounter = 0;
         int indent = 15;
         for (int i = 0; i < game.getWordListSize(); i++) {
