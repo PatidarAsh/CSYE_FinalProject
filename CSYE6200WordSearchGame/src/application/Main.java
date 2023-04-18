@@ -5,6 +5,7 @@ import application.Main.Difficulty;
 import application.tutorial.GetTurorialHBOX;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
@@ -201,6 +202,12 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 
 	        });
 			
+	        buttonYes.setOnAction(e -> { // If use chooses to play again
+	            mainGame.stop(); // Stops main game loop
+	            primaryStage.setScene(scene1); // Resets stage to show starting screen
+	        });
+
+	        buttonNo.setOnAction(e -> Platform.exit()); // If user doesnt want to play again, quit
 			
 		} catch(Exception e) {
 			e.printStackTrace();
