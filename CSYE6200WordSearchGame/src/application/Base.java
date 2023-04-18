@@ -18,8 +18,8 @@ public class Base {
     private int oldCol = -1; // Set to the column of the first letter of wordSelect
     private final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Conatins all possible random letters
     
-    private final int sizeEazy = 10, sizeMedium = 20, sizeHard = 25;
-    private final int wordEazy = 1, wordMedium = 8, wordHard = 12;
+    private final int sizeEazy = 10, sizeMedium = 13, sizeHard = 16;
+    private final int wordEazy = 2, wordMedium = 3, wordHard = 6;
 
     final static String[] wordLibrary = { "HAPPY", "MOTIVATED", "CONFIDENT", "POSITIVE", "ENERGETIC", 
     		"PERSISTENT", "DISCIPLINED", "PROACTIVE", "GRACIOUS", "HONEST", "RELIABLE", "RESPECTFUL", 

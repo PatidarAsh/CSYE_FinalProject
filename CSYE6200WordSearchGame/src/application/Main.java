@@ -37,7 +37,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 
     final int windowSize = 600; // Sets the window size
     int boardSize;
-    int colSelection = 4; // The column that the user currently has selected
+    int colSelection = 3; // The column that the user currently has selected
     int rowSelection = 6; // The row that the user currently has selected
     final int VBOX_SPACING = 25;
     Difficulty difficulty; // Enum variable to contain difficulty setting
@@ -107,8 +107,8 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 //	        keyboardNode.setSpacing(300);
 	      
 	        Group rootForMain = new Group();
-	        rootForMain.setLayoutX(150);
-	        rootForMain.setLayoutY(130);
+	        rootForMain.setLayoutX(100);
+	        rootForMain.setLayoutY(100);
 	        rootForMain.getChildren().addAll(canvas, keyboardNode); // Adds canvas for printing to and the keyboard listener
 	        mainScene = new Scene(rootForMain, windowSize, windowSize); // Sets the window size and content to show
 	        mainScene.setFill(Color.web("#F6E1BE"));
@@ -171,12 +171,6 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        
 	        primaryStage.setScene(scene1); 
 	        primaryStage.show(); 
-	        
-//	        VBox rootMain = new VBox(VBOX_SPACING);
-//	        rootMain.
-//	        rootMain.getChildren().add(mainGame);
-//	        mainScene = new Scene(rootMain, windowSize, windowSize);
-//	        Scene sim = new Scene(primaryStage, 800, 800, true);
 
 			
 			buttonEasy.setOnAction(e -> { 
@@ -190,14 +184,20 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 			
 
 			buttonMedium.setOnAction(e -> { // When Medium selected
-	            difficulty = Difficulty.MEDIUM; // Sets difficulty level
-	            primaryStage.setScene(mainScene); // Sets the stage to show main game scene
+	            difficulty = Difficulty.MEDIUM; 
+	            game.initmatrix(difficulty);
+	            boardSize = game.getMatrixSize();
+	            primaryStage.setScene(mainScene);
+	            mainGame.start(); 
 
 	        });
 
 	        buttonHard.setOnAction(e -> { // When Hard selected
-	            difficulty = Difficulty.HARD; // Sets difficulty level
-	            primaryStage.setScene(mainScene); // Sets the stage to show main game scene
+	            difficulty = Difficulty.HARD; 
+	            game.initmatrix(difficulty);
+	            boardSize = game.getMatrixSize();
+	            primaryStage.setScene(mainScene);
+	            mainGame.start(); 
 
 	        });
 			
@@ -249,7 +249,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         for (int i = 0; i < game.getWordListSize(); i++) {
             gc.fillText(game.getWordListValue(i), (indent + (125 * colCounter)), (indent + (20 * rowCounter)));
             colCounter++;
-            if (colCounter == 4) {
+            if (colCounter == 3) {
                 colCounter = 0;
                 rowCounter++;
             }
