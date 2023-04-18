@@ -12,7 +12,7 @@ public class Base {
 //    private WordSelected wordSelect = new WordSelected(); // Holds a list of selected characters
     private char[][] matrix; // Becomes the matrix, and is initialized with a size from WordSearch.java
     private int matrixSize; // Holds the size of the board
-    private String wordIn = new String(); // Stores the word that the user selects
+    private String input = new String(); // Stores the word that the user selects
     private int oldRow = -1; // Set to the row of the first letter of wordSelect
     private int oldCol = -1; // Set to the column of the first letter of wordSelect
     private final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Conatins all possible random letters
@@ -199,6 +199,10 @@ public class Base {
                 }
             }
         }
+    }
+    
+    public String getInput() {
+        return input;
     }
 
 }
