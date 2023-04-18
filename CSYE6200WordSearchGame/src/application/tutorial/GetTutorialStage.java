@@ -34,7 +34,7 @@ public class GetTutorialStage {
 		lbl4 = new Label();
 		lbl4.setText("First, you should search your word.");
 		lbl5 = new Label("_____Use arrow keys to move (up/down/right/left)");
-		lbl6 = new Label("_____enter to select each letter of the word.");
+		lbl6 = new Label("_____Enter to select each letter of the word.");
 		lbl7 = new Label("_____Use backspace to delete the most recent letter");
 		
 	
@@ -43,10 +43,10 @@ public class GetTutorialStage {
 		pane2 = new FlowPane();
 	    pane2.setVgap(10);
 	    
-	    pane2.setStyle("-fx-background-color:#B0E0E6;-fx-padding:10px;");
+	    pane2.setStyle("-fx-background-color:#c2d9d1;-fx-padding:10px;");
 	    pane2.getChildren().addAll(lbl2,lbl3,lbl4,lbl5,lbl6,lbl7);
 	   
-	    scene2 = new Scene(pane2, 400, 400);
+	    scene2 = new Scene(pane2, 400, 200);
 	    scene2.setFill(Color.web("#708090"));
 	    stage2 = new Stage();
 	    stage2.setScene(scene2);

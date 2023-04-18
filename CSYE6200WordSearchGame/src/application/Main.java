@@ -94,18 +94,24 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 			primaryStage.setScene(scene1);
 			primaryStage.show();
 			
+			
+			//game/main scene
 			Canvas canvas = new Canvas(windowSize, windowSize);
 	        gc = canvas.getGraphicsContext2D();
 
-	        Box keyboardNode = new Box();
+	        VBox keyboardNode = new VBox();
+//	        keyboardNode.setAlignment(Pos.CENTER);
 	        keyboardNode.setFocusTraversable(true);
 	        keyboardNode.requestFocus();
 	        keyboardNode.setOnKeyPressed(this);
+//	        keyboardNode.setSpacing(300);
 	      
 	        Group rootForMain = new Group();
+	        rootForMain.setLayoutX(150);
+	        rootForMain.setLayoutY(130);
 	        rootForMain.getChildren().addAll(canvas, keyboardNode); // Adds canvas for printing to and the keyboard listener
 	        mainScene = new Scene(rootForMain, windowSize, windowSize); // Sets the window size and content to show
-	        mainScene.setFill(Color.web("#B0C4DE"));
+	        mainScene.setFill(Color.web("#F6E1BE"));
 
 			/* Setting Scene2 for ending of game 
 			 * */
@@ -113,13 +119,13 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        //
 			Text closing = new Text("Good Job!");
 			closing.setId("fancytext");                            
-			closing.setText("Good Job!\n You found all of the words");
+			closing.setText("             Good Job!\n You found all of the words");
 			Text retry = new Text("Do you want to play again?");  
 			retry.setId("labeltext");                     
 			retry.setText("Do you want to play again?");
 			
 		    VBox labelClosing = new VBox();
-		    labelClosing.setAlignment(Pos.TOP_LEFT);
+		    labelClosing.setAlignment(Pos.CENTER);
 		    labelClosing.getChildren().addAll(closing,retry);
 		    
 		    //create Hbox for button to select game difficulty 
@@ -127,7 +133,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 		    Button buttonNo = new Button("I'm done");
 		    
 		    HBox btnForRetry=new HBox();
-		    btnForRetry.setAlignment(Pos.TOP_LEFT);
+		    btnForRetry.setAlignment(Pos.CENTER);
 		    btnForRetry.getChildren().addAll(buttonYes, buttonNo);   // Adds Buttons 
 		    btnForRetry.setSpacing(30);
 	        
@@ -141,7 +147,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	                        new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, false, true)
 	                )));
 	        
-	        rootClosing.setAlignment(Pos.TOP_LEFT);
+	        rootClosing.setAlignment(Pos.CENTER);
 	        rootClosing.getChildren().addAll(labelClosing, btnForRetry);
 	        scene2 = new Scene(rootClosing, windowSize, windowSize);
 
@@ -153,24 +159,35 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        AnimationTimer mainGame = new AnimationTimer() {
 	            @Override
 	            public void handle(long arg0) {
-	                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight()); 
+	                gc.clearRect(0, 0, canvas.getWidth()/2, canvas.getHeight()/2); 
+	                
+	                gc.setTextAlign(null);;
 	                
 	                getEverything();
 	                input = game.getInput();
 	                checkForEnd(primaryStage);
 	            }
 	        };
-
+	        
 	        primaryStage.setScene(scene1); 
 	        primaryStage.show(); 
+	        
+//	        VBox rootMain = new VBox(VBOX_SPACING);
+//	        rootMain.
+//	        rootMain.getChildren().add(mainGame);
+//	        mainScene = new Scene(rootMain, windowSize, windowSize);
+//	        Scene sim = new Scene(primaryStage, 800, 800, true);
+
 			
 			buttonEasy.setOnAction(e -> { 
 	            difficulty = Difficulty.EASY; 
 	            game.initmatrix(difficulty);
 	            boardSize = game.getMatrixSize();
-	            primaryStage.setScene(mainScene); 
+	            primaryStage.setScene(mainScene);
+//	            primaryStage.centerOnScreen();
 	            mainGame.start(); 
 	        });
+			
 
 			buttonMedium.setOnAction(e -> { // When Medium selected
 	            difficulty = Difficulty.MEDIUM; // Sets difficulty level
