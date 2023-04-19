@@ -1,6 +1,11 @@
 package application;
 	
 
+import java.applet.AudioClip;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import application.Main.Difficulty;
 import application.tutorial.GetTurorialHBOX;
 import javafx.animation.AnimationTimer;
@@ -26,6 +31,8 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
@@ -54,7 +61,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	       try {
 			/* Setting Scene1 The Launch Page of Game 
 			 * */
-			
+
 		    //create Vbox for welcomeing text
 			Text welcome = new Text("Welcome to this Word Search");
 			welcome.setId("fancytext");                            
@@ -96,6 +103,12 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 	        
 	        //set frontend
 			scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			
+
+			Media sound = new Media(new File("CSYE6200WordSearchGame/src/backgroundImage/bgm.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.setAutoPlay(true);
+
 			primaryStage.setScene(scene1);
 			primaryStage.show();
 			
