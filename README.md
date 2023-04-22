@@ -18,4 +18,4 @@ This is a word puzzle game, made for entertainment as well as to test ability wi
 3. Time to play!
 
 ## Credits to 
-[Jasmine Chen](https://github.com/JasmnC), [Ashvini Patidar](), and [Mitali Chouthai]
+[Jasmine Chen](https://github.com/JasmnC), [Ashvini Patidar](https://github.com/PatidarAsh), and [Mitali Chouthai](https://github.com/MitaliChouthai)
